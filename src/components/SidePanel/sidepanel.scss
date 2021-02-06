@@ -1,0 +1,9 @@
+.side-panel{
+    //remove blue underline/highlight if Link
+     a{
+        text-decoration: none;
+    }
+    .MuiButtonBase-root{
+        color: rgba(0, 0, 0, 0.87);
+    }
+}
