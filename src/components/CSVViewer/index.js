@@ -57,16 +57,17 @@ export default function CSVViewer() {
 
     return(<div>
         <div>
+        <p>
             Please select a csv such that the first row is the column headers:
+        </p>
         </div>
+        <p>
+           Download the example template to see the format:&nbsp; 
+  
+            <a href='./template.csv' download> Click to Download Template</a>
+        </p>
         <div>
-           Download the example template to see the format:
-        </div>
-        <div>
-            <a href='./template.csv' download>Click to Download Template</a>
-        </div>
-        <div>
-           Upload Template to View:
+           Upload a csv to View:
         </div>
         <div>
             <input type="file" accept=".csv" onChange={onFileChange} />

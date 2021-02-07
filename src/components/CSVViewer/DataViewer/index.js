@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
+import './dataViewer.scss';
+
+
 
 export default function DataViewer(props) {
     console.log(props.data)
- return(<div>
+ return(<div className="dataViewer">
      <table >
-         <thead>
+         <thead >
      <tr>
          <th> Row #</th>
     {props.data.headers.map((h, i)=>{
