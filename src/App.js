@@ -5,6 +5,7 @@ import SidePanel from './components/SidePanel';
 import {
   BrowserRouter as Router,
   Switch,
+  HashRouter,
   Route,
   Redirect,
   Link
@@ -22,7 +23,7 @@ function App() {
 
 
   return (
-    <Router>
+    <HashRouter basename="/">
       <div className="app">
         <SidePanel>
         <div className="App-intro">
@@ -37,7 +38,7 @@ function App() {
       
 
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 

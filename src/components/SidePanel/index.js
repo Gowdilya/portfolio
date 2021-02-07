@@ -116,7 +116,7 @@ return(
           edge="start"
           className={clsx(classes.menuButton, open && classes.hide)}
         >
-          <MenuIcon />
+          <MenuIcon className="menu-button" />
         </IconButton>
         <Typography variant="h6" noWrap>
           Gowdilya's Portfolio
