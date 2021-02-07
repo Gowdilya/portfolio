@@ -24,6 +24,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import {Link} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './sidepanel.scss';
 
 const drawerWidth = 240;
@@ -87,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SidePanel(props) {
+    const location = useLocation();
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -142,14 +144,14 @@ return(
       <List className="primary-nav">
 
           <Link to="/">
-            <ListItem button key={"Home"} >
+            <ListItem button key={"Home"} selected={location.pathname === "/"} >
               <ListItemIcon><HomeIcon></HomeIcon></ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
           </Link>
 
           <Link to="/resume">
-            <ListItem button key={"Resume"} >
+            <ListItem button key={"Resume"} selected={location.pathname === "/resume"}>
               <ListItemIcon><DescriptionIcon></DescriptionIcon></ListItemIcon>
               <ListItemText primary={"Resume"} />
             </ListItem>
@@ -175,8 +177,8 @@ return(
   
       </AccordionSummary>
       <AccordionDetails>
-        <Link to="csv-viewer">
-          <ListItem button key={"CSV Viewer"} >
+        <Link to="/csv-viewer">
+          <ListItem button key={"CSV Viewer"} selected={location.pathname === "/csv-viewer"} >
             <ListItemIcon><TableChartIcon></TableChartIcon></ListItemIcon>
             <ListItemText primary={"CSV Viewer"} />
           </ListItem>
