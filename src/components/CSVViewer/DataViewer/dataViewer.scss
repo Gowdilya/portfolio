@@ -1,6 +1,9 @@
 .dataViewer{
     text-align: center;
     margin: auto;
+    .MuiInputBase-root{
+        margin-right:20px!important;
+    }
     table{
         text-align: center;
         margin: auto;
@@ -8,7 +11,7 @@
     }
     thead th{
         display: table-cell;
-        padding: 16px;
+        padding: 8px;
         font-size: 0.875rem;
         text-align: left;
         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -23,7 +26,7 @@
     }
     td{
         display: table-cell;
-        padding: 16px;
+        padding: 6px;
         font-size: 0.875rem;
         text-align: left;
         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -38,5 +41,18 @@
     }
     td:not(:first-child){
         background-color: #706565;
+    }
+    tr:hover{
+        td{
+            border:2px solid red !important;
+        }
+    }
+    .highlight td{
+        background-color: #224710;
+    }
+    .highlight td:not(:first-child){
+
+       
+        background-color: #4ca821 !important;
     }
 }
