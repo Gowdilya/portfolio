@@ -5,43 +5,44 @@ import TextField from '@material-ui/core/TextField';
 
 
 export default function DataViewer(props) {
-    const [rows, setRows] = useState({ isStartingRow: true, rowIndexes: [0, props.data.lines.length-1] });
+    const [coordinates, setCoordinates] = useState({  rowIndexes: [0, props.data.lines.length-1], colIndexes: [1, props.data.headers.length] });
 
     useEffect(()=>{
-        setRows({ isStartingRow: true, rowIndexes: [0, props.data.lines.length-1] });
+        setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.headers.length]});
     }, [props.data]) // Reset Rows Selected on new Data Set
 
     useEffect(() => {
-        console.log("start: " + rows.rowIndexes[0] );
-        console.log("end: " + rows.rowIndexes[1]);
-        console.log("IS:"+ rows.isStartingRow);
-    }, [rows])
+        console.log("start: " + coordinates.rowIndexes[0] );
+        console.log(getColName(props.data.headers.length));
+        console.log("end: " + coordinates.rowIndexes[1]);
+        console.log("IS:"+ coordinates.isStartingRow);
+    }, [coordinates])
 
     const handleRowClick = (rowIndex) => {
-        if (rows.isStartingRow) {
-            setRows({ isStartingRow: false, rowIndexes: [rowIndex, rows.rowIndexes[1]] })
-        } else {
-            setRows({ isStartingRow: true, rowIndexes: [rows.rowIndexes[0], rowIndex] })
-        }
+        // if (coordinates.isStartingRow) {
+        //     setCoordinates({  rowIndexes: [rowIndex, coordinates.rowIndexes[1]] })
+        // } else {
+        //     setCoordinates({ rowIndexes: [coordinates.rowIndexes[0], rowIndex] })
+        // }
     }
 
-    const handleStartChange = (e) =>{
-        if(0<=e.target.value<=props.data.lines.length-1){
-            setRows({ isStartingRow: rows.isStartingRow, rowIndexes: [e.target.value, rows.rowIndexes[1]] })
-        }
-    }
-    const handleEndChange = (e) =>{
+    // const handleStartChange = (e) =>{
+    //     if(0<=e.target.value<=props.data.lines.length-1){
+    //         setCoordinates({ isStartingRow: coordinates.isStartingRow, rowIndexes: [e.target.value, coordinates.rowIndexes[1]] })
+    //     }
+    // }
+    // const handleEndChange = (e) =>{
   
-        if(0<=e.target.value<=props.data.lines.length-1){
-            setRows({ isStartingRow: rows.isStartingRow, rowIndexes: [rows.rowIndexes[0], e.target.value] })
-        }
-    }
+    //     if(0<=e.target.value<=props.data.lines.length-1){
+    //         setCoordinates({ isStartingRow: coordinates.isStartingRow, rowIndexes: [coordinates.rowIndexes[0], e.target.value] })
+    //     }
+    // }
 
     const generateColumnNames = ()=>{
         var columns = []
-        columns.push(<th></th>)
+        columns.push(<th key={"empty"}></th>)
         for (let i = 0; i < props.data.headers.length; i ++){
-            columns.push(<th>{getColName(i + 1)}</th>)
+            columns.push(<th key={i}>{getColName(i + 1 )}</th>)
         }
         return <tr>{ columns }</tr>
     }
@@ -66,7 +67,13 @@ export default function DataViewer(props) {
     
 
     return (<div className="dataViewer">
-         <TextField
+        <TextField id="outlined-basic" label="Coordinate 1" variant="outlined" 
+        value={getColName(coordinates.colIndexes[0])+(coordinates.rowIndexes[0]+2)}
+         />
+        <TextField id="outlined-basic" label="Coordinate 2" variant="outlined" 
+        value={getColName(coordinates.colIndexes[1])+(coordinates.rowIndexes[1]+2)}
+         />
+         {/* <TextField
           onClick={ ()=> setRows({ isStartingRow: true, rowIndexes: [rows.rowIndexes[0], rows.rowIndexes[1]] })}
           inputRef={input => input && rows.isStartingRow==true &&input.focus()}
           id="standard-number"
@@ -89,7 +96,7 @@ export default function DataViewer(props) {
           InputLabelProps={{
             shrink: true,
           }}
-        />
+        /> */}
 
         <table >
             <thead >
@@ -114,7 +121,7 @@ export default function DataViewer(props) {
 
                 {props.data.lines.map((l, rowIndex ) => {
                     return (
-                        <tr key={rowIndex} onClick={() => handleRowClick(rowIndex)} className={rows.rowIndexes[0] <= rowIndex && rowIndex <= rows.rowIndexes[1] ? "highlight" : ""}>
+                        <tr key={rowIndex}  className={coordinates.rowIndexes[0] <= rowIndex && rowIndex <= coordinates.rowIndexes[1] ? "highlight" : ""}>
                             <td>{rowIndex + 2}</td>
                             {l.map((col, j) => {
                                 return (
