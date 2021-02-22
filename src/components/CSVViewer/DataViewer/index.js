@@ -5,15 +5,14 @@ import TextField from '@material-ui/core/TextField';
 
 
 export default function DataViewer(props) {
-    const [coordinates, setCoordinates] = useState({  rowIndexes: [0, props.data.lines.length-1], colIndexes: [1, props.data.headers.length] });
+    const [coordinates, setCoordinates] = useState({  rowIndexes: [0, props.data.lines.length-1], colIndexes: [1, props.data.lines[0].length] });
 
     useEffect(()=>{
-        setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.headers.length]});
+        setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.lines[0].length]});
     }, [props.data]) // Reset Rows Selected on new Data Set
 
     useEffect(() => {
         console.log("start: " + coordinates.rowIndexes[0] );
-        console.log(getColName(props.data.headers.length));
         console.log("end: " + coordinates.rowIndexes[1]);
         console.log("IS:"+ coordinates.isStartingRow);
     }, [coordinates])
@@ -41,7 +40,7 @@ export default function DataViewer(props) {
     const generateColumnNames = ()=>{
         var columns = []
         columns.push(<th key={"empty"}></th>)
-        for (let i = 0; i < props.data.headers.length; i ++){
+        for (let i = 0; i < props.data.lines[0].length; i ++){
             columns.push(<th key={i}>{getColName(i + 1 )}</th>)
         }
         return <tr>{ columns }</tr>
@@ -68,10 +67,10 @@ export default function DataViewer(props) {
 
     return (<div className="dataViewer">
         <TextField id="outlined-basic" label="Coordinate 1" variant="outlined" 
-        value={getColName(coordinates.colIndexes[0])+(coordinates.rowIndexes[0]+2)}
+        value={getColName(coordinates.colIndexes[0])+(coordinates.rowIndexes[0]+1)}
          />
         <TextField id="outlined-basic" label="Coordinate 2" variant="outlined" 
-        value={getColName(coordinates.colIndexes[1])+(coordinates.rowIndexes[1]+2)}
+        value={getColName(coordinates.colIndexes[1])+(coordinates.rowIndexes[1]+1)}
          />
          {/* <TextField
           onClick={ ()=> setRows({ isStartingRow: true, rowIndexes: [rows.rowIndexes[0], rows.rowIndexes[1]] })}
@@ -112,17 +111,17 @@ export default function DataViewer(props) {
             </thead>
             <tbody>
                
-                <tr>
-                    <td>{1}</td>
+                {/* <tr>
+                    <td></td>
                     {props.data.headers.map((h, i) => {
                             return (<td key={i}>{h}</td>)
                         })}
-                </tr>
+                </tr> */}
 
                 {props.data.lines.map((l, rowIndex ) => {
                     return (
                         <tr key={rowIndex}  className={coordinates.rowIndexes[0] <= rowIndex && rowIndex <= coordinates.rowIndexes[1] ? "highlight" : ""}>
-                            <td>{rowIndex + 2}</td>
+                            <td>{rowIndex + 1}</td>
                             {l.map((col, j) => {
                                 return (
                                     <td key={j} >{col}</td>

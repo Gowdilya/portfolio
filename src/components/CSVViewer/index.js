@@ -31,23 +31,31 @@ export default function CSVViewer() {
 
     function processData(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
-        var headers = allTextLines[0].split(',');
+
+        //Simple check if we have valid headers
+      
+
+        //var headers = allTextLines[0].split(',');
+
+        var firstLine = allTextLines[0].split(',');
+        
         var csvJSON={}
         var lines = [];
+        lines.push(firstLine);
     
         for (var i=1; i<allTextLines.length; i++) {
             var data = allTextLines[i].split(',');
-            if (data.length == headers.length) {
+            if (data.length == lines[0].length) {
     
                 var tarr = [];
-                for (var j=0; j<headers.length; j++) {
+                for (var j=0; j<lines[0].length; j++) {
                     tarr.push(data[j]);
                 }
                 lines.push(tarr);
             }
         }
         // alert(lines);
-        csvJSON.headers = headers;
+        //csvJSON.headers = headers;
         csvJSON.lines = lines;
         setcsvParsed(csvJSON);
     }
