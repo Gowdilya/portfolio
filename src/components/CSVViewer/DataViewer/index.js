@@ -10,9 +10,13 @@ export default function DataViewer(props) {
     const [error1, setError1] = useState({show: false, message:""});
     const [error2, setError2] = useState({show: false, message:""});
 
-    useEffect(()=>{
-        setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.lines[0].length]});
-    }, [props.data]) // Reset Rows Selected on new Data Set
+    // useEffect(()=>{
+    //     setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.lines[0].length]});
+    //     setCoordinateText1(getColName(coordinates.colIndexes[0])+(coordinates.rowIndexes[0]+1));
+    //     setCoordinateText2(getColName(coordinates.colIndexes[1])+(coordinates.rowIndexes[1]+1));
+    //     setError1({show: false, message:""});
+    //     setError2({show: false, message:""});
+    // }, [props.data]) // Reset Rows Selected on new Data Set
 
 
     useEffect(()=>{
