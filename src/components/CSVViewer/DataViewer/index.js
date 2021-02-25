@@ -20,11 +20,9 @@ export default function DataViewer(props) {
 
 
     useEffect(()=>{
-        var pattern = /^[a-zA-Z]*\d*$/; 
-        console.log(coordinateText1);
-        if(!!pattern.test(coordinateText1)){
+        if(isValidCoordinate(coordinateText1)){
             setError1({show: false, message:""})
-            //valid Text
+            //valid 
             var [row, col] = extractRowAndCol(coordinateText1);
 
             setCoordinates({rowIndexes:[row-1, coordinates.rowIndexes[1]], colIndexes:[col, coordinates.colIndexes[1]]});
@@ -36,11 +34,9 @@ export default function DataViewer(props) {
     },[coordinateText1])
 
     useEffect(()=>{
-        var pattern = /^[a-zA-Z]*\d*$/; 
-        console.log(coordinateText2);
-        if(!!pattern.test(coordinateText2)){
+        if(isValidCoordinate(coordinateText2)){
             setError2({show: false, message:""})
-            //valid Text
+            //valid 
             var [row, col] = extractRowAndCol(coordinateText2);
             setCoordinates({rowIndexes:[ coordinates.rowIndexes[0],row-1,], colIndexes:[coordinates.colIndexes[0],col, ]});
         }else{
@@ -49,6 +45,10 @@ export default function DataViewer(props) {
         }
     },[coordinateText2])
 
+    const isValidCoordinate = (coordinate)=>{
+        var pattern = /^[a-zA-Z]*\d*$/; 
+        return !!pattern.test(coordinate);
+    }
     const extractRowAndCol  = (coordinate) => {
         var row = coordinate.replace(/\D/g, "");
         var char = coordinate;
