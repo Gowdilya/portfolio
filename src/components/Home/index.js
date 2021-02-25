@@ -13,6 +13,9 @@ export default function Home() {
         <p>My Resources:
             <a href={"https://github.com/Gowdilya/my_resources"}> https://github.com/Gowdilya/my_resources </a>
         </p>
+        <p>
+            Download Resume:<a href='./Gowdilya_Resume.pdf' download> Gowdilya_Resume.pdf</a>
+        </p>
        
     </div>)
 }
