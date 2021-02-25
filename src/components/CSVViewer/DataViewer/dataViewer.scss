@@ -32,7 +32,7 @@
         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
         font-weight: 400;
         line-height: 1.43;
-        border-bottom: 1px solid rgba(81, 81, 81, 1);
+        border: 1px solid rgba(81, 81, 81, 1);
         letter-spacing: 0.01071em;
         vertical-align: inherit;
         color: #fff;
@@ -41,18 +41,26 @@
     }
     td:not(:first-child){
         background-color: #706565;
+        //background-color:white;
+        //color:black;
     }
     tr:hover{
         td{
             border:2px solid red !important;
         }
     }
-    .highlight td{
+    td:first-child{
         background-color: #224710;
     }
-    .highlight td:not(:first-child){
 
-       
+    // .highlight td:not(:first-child){
+    //     background-color:white;
+    //     color:black;
+    // }
+    .highlight .highlightcol{
         background-color: #4ca821 !important;
+        color:white !important;
     }
+  
+
 }
