@@ -1,0 +1,21 @@
+.alice-carousel{
+    width:1200px !important;
+    height: 700px !important;
+    span{
+        font-size: x-large !important;
+    }
+}
+.alice-carousel ul li img{
+    text-align: center;
+    margin: auto;
+    max-height: 700px;
+    width: 100%;
+    object-fit: contain;
+  }
+  .alice-carousel__dots-item:not(.__custom){
+    width: 22px !important;
+    height: 22px !important;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #2751c7 !important;
+}

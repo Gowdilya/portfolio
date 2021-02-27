@@ -66,11 +66,11 @@ export default function CSVViewer() {
     return(<div>
         <div>
         <p>
-            Please select a csv such that the first row is the column headers:
+            Please select a csv file
         </p>
         </div>
         <p>
-           Download the example template to see the format:&nbsp; 
+           Download the example template.csv if you wish to use it:&nbsp; 
   
             <a href='./template.csv' download> Click to Download Template</a>
         </p>
@@ -82,9 +82,16 @@ export default function CSVViewer() {
         </div>
         <div>
             {csvParsed?
+            <div>
+                <p>
+                    Type in the coordinates in the format [charecter][number] to highlight the corresponing table cells.
+                </p>
+                <p>
+                    (By default all cells are selected)
+                </p>
             <DataViewer data={csvParsed}>
 
-            </DataViewer>:null}
+            </DataViewer></div>:null}
         </div>
     </div>)
 }

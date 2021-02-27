@@ -25,6 +25,9 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import {Link} from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+
 import './sidepanel.scss';
 
 const drawerWidth = 240;
@@ -162,6 +165,29 @@ return(
 
       <Divider />
       <List>
+        <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <ListItem button key={"Projects"}>
+              <ListItemIcon><AccountTreeIcon></AccountTreeIcon></ListItemIcon>
+              <ListItemText primary={"Projects"} />
+          </ListItem>
+
+          
+
+        </AccordionSummary>
+        <AccordionDetails>
+          <Link to="/tracking&traceability">
+            <ListItem button key={"Tracking & Traceability"} selected={location.pathname === "/tracking&traceability"} >
+              <ListItemIcon><CropFreeIcon></CropFreeIcon></ListItemIcon>
+              <ListItemText primary={"Tracking & Traceability"} />
+            </ListItem>
+          </Link>
+        </AccordionDetails>
+      </Accordion>
       <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
