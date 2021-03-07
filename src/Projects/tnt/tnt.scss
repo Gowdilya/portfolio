@@ -1,6 +1,7 @@
 .alice-carousel{
-    width:1200px !important;
-    height: 700px !important;
+    width:100vw;  
+    max-width: 1200px;
+    height: auto;
     span{
         font-size: x-large !important;
     }
@@ -8,9 +9,11 @@
 .alice-carousel ul li img{
     text-align: center;
     margin: auto;
-    max-height: 700px;
-    width: 100%;
-    object-fit: contain;
+    max-height:70vh;
+    width: auto;
+ 
+
+    
   }
   .alice-carousel__dots-item:not(.__custom){
     width: 22px !important;
@@ -18,4 +21,8 @@
     cursor: pointer;
     border-radius: 50%;
     background-color: #2751c7 !important;
+}
+.carousel-container{
+    width:100%;
+    position: absolute;
 }

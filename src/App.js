@@ -13,7 +13,9 @@ import {
  import Home from './components/Home';
  import CSVViewer from './components/CSVViewer';
  import Resume from './components/Resume';
+ import CSVGrapher from './components/CSVGrapher';
  import Tnt from './../src/Projects/tnt';
+ 
 
 
 import { render } from '@testing-library/react';
@@ -32,6 +34,7 @@ function App() {
               <Route exact path="/"  component={Home} />
               <Route path="/resume" component={Resume} />
               <Route path="/csv-viewer" component={CSVViewer} />
+              <Route path="/csv-grapher" component={CSVGrapher} />
               <Route path="/tracking&traceability" component={Tnt} />
               <Redirect to="/" />
             </Switch>

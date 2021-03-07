@@ -27,6 +27,7 @@ import {Link} from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import CropFreeIcon from '@material-ui/icons/CropFree';
+import TimelineIcon from '@material-ui/icons/Timeline';
 
 import './sidepanel.scss';
 
@@ -207,6 +208,14 @@ return(
           <ListItem button key={"CSV Viewer"} selected={location.pathname === "/csv-viewer"} >
             <ListItemIcon><TableChartIcon></TableChartIcon></ListItemIcon>
             <ListItemText primary={"CSV Viewer"} />
+          </ListItem>
+        </Link>
+      </AccordionDetails>
+      <AccordionDetails>
+        <Link to="/csv-grapher">
+          <ListItem button key={"CSV Grapher"} selected={location.pathname === "/csv-grapher"} >
+            <ListItemIcon><TimelineIcon></TimelineIcon></ListItemIcon>
+            <ListItemText primary={"CSV Grapher"} />
           </ListItem>
         </Link>
       </AccordionDetails>

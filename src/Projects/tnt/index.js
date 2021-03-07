@@ -10,13 +10,15 @@ import image5 from './img/5.jpg'
 import image7 from './img/7.jpg'
 import image8 from './img/8.jpg'
 import image9 from './img/9.jpg'
+import {Container, Row, Col} from 'react-bootstrap'
 
 
 
 
 export default function Tnt() {
-    return(<div>
-        <div>
+    return(<Container>
+        <Row className="carousel-container">
+            <Col xs md lg>
         <AliceCarousel 
 >
       <img src={image1} className="sliderimg" alt=""/>
@@ -28,6 +30,8 @@ export default function Tnt() {
       <img src={image8} className="sliderimg" alt=""/> 
       <img src={image9} className="sliderimg" alt=""/> 
     </AliceCarousel>
-    </div>
-    </div>)
+    </Col>
+    </Row>
+    </Container>)
 }
+
