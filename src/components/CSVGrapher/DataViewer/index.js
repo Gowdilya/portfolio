@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 export default function DataViewer(props) {
-    const [coordinates, setCoordinates] = useState({ rowIndexes: [0, props.data.lines.length - 1], colIndexes: [1, 1] });
-    const [coordinateText1, setCoordinateText1] = useState(getColName(coordinates.colIndexes[0]) + (coordinates.rowIndexes[0] + 1));
-    const [coordinateText2, setCoordinateText2] = useState(getColName(coordinates.colIndexes[1]) + (coordinates.rowIndexes[1] + 1));
+    const [coordinates, setCoordinates] = useState({ rowIndexes: [0, props.data.lines.length - 1], colIndexes: [0, 0] });
+    const [coordinateText1, setCoordinateText1] = useState(getColName(coordinates.colIndexes[0] + 1) + (coordinates.rowIndexes[0] + 1));
+    const [coordinateText2, setCoordinateText2] = useState(getColName(coordinates.colIndexes[1] + 1) + (coordinates.rowIndexes[1] + 1));
     const [error, setError] = useState({ show: false, message: "" });
     const [viewGraph, setViewGraph] = useState(false);
 
@@ -113,6 +113,77 @@ export default function DataViewer(props) {
         setViewGraph(bool);
     }
 
+    const extractData =()=>{
+        var extractedData =[]
+        if(coordinates.colIndexes[0] === coordinates.colIndexes[1]){
+            //col  of data
+            if(coordinates.rowIndexes[1] > coordinates.rowIndexes[0]){
+                //normal order
+                props.data.lines.forEach((line, i)=>{
+           
+                    if( coordinates.rowIndexes[0] <= i && i <= coordinates.rowIndexes[1]){
+                        if(!isNaN(line[coordinates.colIndexes[0]- 1])){
+                            extractedData.push(line[coordinates.colIndexes[0]-1]);
+                        }else{
+                            //handleError
+                        }
+                    }
+                } )
+                
+            }else{
+                //reversed Bounds Indexes
+                props.data.lines.forEach((line, i)=>{
+                    if( coordinates.rowIndexes[1] <= i && i <= coordinates.rowIndexes[0]){
+                        if(!isNaN(line[coordinates.colIndexes[0]-1])){
+                            extractedData.push(line[coordinates.colIndexes[0]-1]);
+                        }else{
+                            //handleError
+                        }
+                    }
+                } )
+
+            }
+        }
+        else if (coordinates.rowIndexes[0] === coordinates.rowIndexes[1]){
+            //row of data
+            if(coordinates.colIndexes[1] > coordinates.colIndexes[0]){
+                //normal order
+
+                props.data.lines[coordinates.rowIndexes[0]].forEach((entry, i)=>{
+                    if( coordinates.colIndexes[0]  <= i + 1 && i + 1 <= coordinates.colIndexes[1]){
+                        if(!isNaN(entry)){
+                            extractedData.push(entry);
+                        }else{
+                            //handleError
+                        }
+                    }
+                } )
+            }else{
+                //reverse order
+                props.data.lines[coordinates.rowIndexes[0]].forEach((entry, i)=>{
+                    if( coordinates.colIndexes[1] <= i + 1 && i + 1<= coordinates.colIndexes[0]){
+                        if(!isNaN(entry)){
+                            extractedData.push(entry);
+                        }else{
+                            //handleError
+                        }
+                    }
+                } )
+            } 
+        }
+        else{
+            //one row or one column was not selected...
+
+        }
+        console.log(extractedData);
+    }
+
+    const displayGraph = ()=>{
+        extractData();
+
+        return(<div>Graph</div>)
+    }
+
     const displayTable = () =>{
         return(  <div className='table'>
         <TextField id="outlined-basic1" label="Coordinate 1" variant="outlined"
@@ -136,7 +207,7 @@ export default function DataViewer(props) {
                             <td>{rowIndex + 1}</td>
                             {l.map((col, j) => {
                                 return (
-                                    <td key={j} className={(coordinates.colIndexes[0] <= j + 1 && j + 1 <= coordinates.colIndexes[1]) || (coordinates.colIndexes[0] >= j + 1 && j + 1 >= coordinates.colIndexes[1]) ? "highlightcol" : ""}>{col}</td>
+                                    <td key={j} className={(coordinates.colIndexes[0] <= j + 1  && j + 1 <= coordinates.colIndexes[1]) || (coordinates.colIndexes[0] >= j + 1  && j + 1  >= coordinates.colIndexes[1]) ? "highlightcol" : ""}>{col}</td>
                                 )
                             })}
                         </tr>
@@ -160,7 +231,7 @@ export default function DataViewer(props) {
             </ButtonGroup>
         </div>
         <div>
-            {viewGraph?null:displayTable()}
+            {viewGraph?displayGraph():displayTable()}
         </div>
       
     </div>)
