@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import ErrorMessage from '../../Shared/ErrorMessage';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Graph from '../Graph';
 
 export default function DataViewer(props) {
     const [coordinates, setCoordinates] = useState({ rowIndexes: [0, props.data.lines.length - 1], colIndexes: [0, 0] });
@@ -11,7 +12,7 @@ export default function DataViewer(props) {
     const [coordinateText2, setCoordinateText2] = useState(getColName(coordinates.colIndexes[1] + 1) + (coordinates.rowIndexes[1] + 1));
     const [error, setError] = useState({ show: false, message: "" });
     const [viewGraph, setViewGraph] = useState(false);
-
+    const [selectedData, setSelectedData] = useState(null);
     // useEffect(()=>{
     //     setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.lines[0].length]});
     //     setCoordinateText1(getColName(coordinates.colIndexes[0])+(coordinates.rowIndexes[0]+1));
@@ -110,6 +111,9 @@ export default function DataViewer(props) {
     };
 
     const graphMode = (bool) =>{
+        if(bool){
+            extractData();
+        }
         setViewGraph(bool);
     }
 
@@ -175,13 +179,13 @@ export default function DataViewer(props) {
             //one row or one column was not selected...
 
         }
-        console.log(extractedData);
+        setSelectedData(extractedData);
     }
 
-    const displayGraph = ()=>{
-        extractData();
-
-        return(<div>Graph</div>)
+    const displayGraph = () => {
+       
+        //pass extracted Data to graph
+        return(<><Graph data={selectedData}></Graph></>)
     }
 
     const displayTable = () =>{
