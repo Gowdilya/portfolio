@@ -65,9 +65,7 @@ export default function CSVViewer() {
 
     return(<div>
         <div>
-        <p>
-            Please select a csv file
-        </p>
+ 
         </div>
         <p>
            Download the example template.csv if you wish to use it:&nbsp; 
