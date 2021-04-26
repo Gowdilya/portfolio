@@ -13,6 +13,7 @@ export default function DataViewer(props) {
     const [error, setError] = useState({ show: false, message: "" });
     const [viewGraph, setViewGraph] = useState(false);
     const [selectedData, setSelectedData] = useState(null);
+
     // useEffect(()=>{
     //     setCoordinates({  rowIndexes: [0, props.data.lines.length-1] , colIndexes: [1, props.data.lines[0].length]});
     //     setCoordinateText1(getColName(coordinates.colIndexes[0])+(coordinates.rowIndexes[0]+1));
@@ -183,7 +184,6 @@ export default function DataViewer(props) {
     }
 
     const displayGraph = () => {
-       
         //pass extracted Data to graph
         return(<><Graph data={selectedData}></Graph></>)
     }

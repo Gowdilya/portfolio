@@ -63,6 +63,11 @@ export default function CSVGrapher(props) {
 
     return(<div>
         <div>
+        <p>
+           Download the example sample_data.csv if you wish to use it:&nbsp; 
+  
+            <a href='./sample_data.csv' download> Click to Download Template</a>
+        </p>
         </div>
 
         <div>
