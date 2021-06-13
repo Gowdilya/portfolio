@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import React from 'react';
 import SidePanel from './components/SidePanel';
+// @ts-ignore
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +15,7 @@ import {
  import CSVViewer from './components/CSVViewer';
  import Resume from './components/Resume';
  import CSVGrapher from './components/CSVGrapher';
- import Tnt from './../src/Projects/tnt';
+ import Tnt from './Projects/tnt';
  
 
 

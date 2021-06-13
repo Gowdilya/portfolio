@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import './graph.scss';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types';
 
 
 export default function Graph(props) {
@@ -29,4 +30,8 @@ export default function Graph(props) {
 </div>
   
     )
+}
+
+Graph.propTypes = {
+  data: PropTypes.array
 }
