@@ -16,6 +16,6 @@ export default function Home() {
         <p>
             Download Resume:<a href='./Gowdilya_Resume.pdf' download> Gowdilya_Resume.pdf</a>
         </p>
-       
+        <iframe src="https://github.com/Gowdilya/my_resources#readme" title="Gowdilya's Resources"></iframe>
     </div>)
 }
