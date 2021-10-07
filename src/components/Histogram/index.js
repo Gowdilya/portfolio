@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { drawChart } from "./BasicD3";
 import BarChart from "./BarChart";
 
 export default function Histogram() {
   const [histogramData, setData] = useState([]);
   const [bins, setBins] = useState([]);
+  //var data = [1, 1, 2, 2, 3, 3, 4, 4, 10, 20, 20, 29, 30, 33];
 
   var data = [
     78.46486935, 76.90588357, 80.76324831, 97.25990112, 77.09160084,
@@ -60,6 +60,8 @@ export default function Histogram() {
   //   foo.push(i);
   // }
   console.log(data.filter((num) => (num <= 90) & (num >= 85)));
+  console.log(data.filter((num) => num <= 60));
+  console.log(data.filter((num) => num > 160));
 
   useEffect(() => {
     var BinSize = 5;
@@ -75,15 +77,13 @@ export default function Histogram() {
       if (item < min) min = item;
       else if (item > max) max = item;
     }
-    console.log(min);
     var StartValue = Math.ceil(min / BinSize) * BinSize;
-    console.log(StartValue);
-    console.log(hisData);
 
     var bins = hisData.map(function (data, i) {
       return i * BinSize + StartValue;
     });
     console.log(bins);
+    console.log(hisData);
 
     setBins(bins);
   }, []);
@@ -107,12 +107,18 @@ export default function Histogram() {
 
     for (const item of data) {
       //Changed from floor to ceil to get correct histogram according to Johns excel
-      //console.log(size);
-      //console.log(min);
       var StartValue = Math.ceil(min / size) * size;
-      histogram[Math.floor((item - (StartValue - size)) / size)]++;
 
-      // histogram[Math.round((item - StartValue) / size)]++;
+      var BucketValueCalc = (item - (StartValue - size)) / size;
+      //console.log(BucketValueCalc);
+      //if whole number
+      if (BucketValueCalc % 1 === 0) {
+        histogram[BucketValueCalc - 1]++;
+      }
+      // else if decimal
+      else {
+        histogram[Math.floor(BucketValueCalc)]++;
+      }
     }
 
     return histogram;

@@ -35,7 +35,7 @@ function BarChart({ width, height, data, bins }) {
 
     var xScaleAxis = d3.scaleBand().range([0, width]).padding(0.5);
     xScaleAxis.domain(bins);
-    var x_axis = d3.axisBottom().scale(xCoordScale);
+    var x_axis = d3.axisBottom().scale(xCoordScale).tickValues(bins);
 
     var yScale = d3
       .scaleLinear()
